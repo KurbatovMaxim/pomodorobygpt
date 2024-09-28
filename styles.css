@@ -1,18 +1,19 @@
-/* Dark Theme Styling */
+/* Body background animation */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #121212; /* Dark background */
+    background: linear-gradient(to top, #FF5722 0%, #121212 0%); /* Start with a dark background */
     font-family: 'Arial', sans-serif;
     color: #FFFFFF; /* White text for contrast */
+    transition: background 1s ease; /* Smooth transition */
 }
 
-/* Center Container Styling */
-/* Pomodoro Container Background Animation */
+/* Pomodoro Container Styles */
 .pomodoro-container {
+    position: relative;
     text-align: center;
     background-color: #1e1e1e;
     padding: 40px;
@@ -20,8 +21,8 @@ body {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     width: 90%;
     max-width: 500px;
-    animation: backgroundTransition 1500s linear forwards; /* Default 25-minute transition */
 }
+
 
 /* Timer Display */
 #timer {
@@ -83,3 +84,68 @@ button:active {
         background-color: #FF5722; /* End color */
     }
 }
+/* Background overlay for animation */
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    z-index: 0; /* Put the overlay behind other elements */
+    background: linear-gradient(to right, #FF5722 0%, #1e1e1e 0%);
+    pointer-events: none; /* Prevent interaction */
+}
+
+
+/* Ensure text and buttons are above the overlay */
+h1, #timer, .button-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Particle container */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Behind the timer */
+    overflow: hidden;
+    pointer-events: none; /* Prevents interaction */
+}
+
+/* Particle styling */
+
+.particle {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.5); /* White particles with some transparency */
+    border-radius: 50%;
+    animation: float 10s linear infinite, pulse 2s ease-in-out infinite;
+}
+/* Float animation */
+@keyframes float {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* Pulse animation */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
